@@ -10,18 +10,18 @@ public class Baekjoon_2839 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int n = Integer.parseInt(br.readLine());
 		int result = 0;
-		
-		for(int i = 0; i <= n/3; i++) {
-			for(int j = 0; j <= n/5; j++) {
-				if(n - 5 * j - 3 * i == 0) {
-					result = i + j;
-					break;
-				}
+
+		while (n > 0) {
+			if (n % 5 == 0) {
+				result += n / 5;
+				break;
 			}
-			if(result != 0) break;
+
+			result++;
+			n -= 3;
 		}
-		
-		System.out.print(result == 0 ? -1 : result);
+
+		System.out.print(n >= 0 ? result : -1);
 	}
 
 }
