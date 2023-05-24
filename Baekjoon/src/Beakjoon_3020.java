@@ -29,11 +29,8 @@ public class Beakjoon_3020 {
 		int count = 0;
 
 		for (float i = 0.5f; i <= h; i += 1) {
-			int s = Arrays.binarySearch(sArr, i);
-			if (s < 0) s = (s + 1) * -1;
-
-			int j = Arrays.binarySearch(jArr, i);
-			if (j < 0) j = (j + 1) * -1;
+			int s = (Arrays.binarySearch(sArr, i) + 1) * -1;
+			int j = (Arrays.binarySearch(jArr, i) + 1) * -1;
 
 			int sum = sArr.length - s + j;
 			if (sum < min) {
