@@ -6,17 +6,16 @@ import java.io.InputStreamReader;
 
 public class Baekjoon_25918_1 {
 
-	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-		int n = Integer.parseInt(br.readLine());
-		char[] stack = br.readLine().toCharArray();
+	public static int getDays(int n, String str) {
+		if (n % 2 != 0) return -1;
 
 		int maxDep = 1;
 		int top = 0;
+		char[] stack = new char[n];
+		
 		for (int i = 0; i < n; i++) {
-			if (top != i) stack[top] = stack[i];
-			if (top > 0 && stack[top - 1] != stack[i]) {
+			stack[top] = str.charAt(i);
+			if (top > 0 && stack[top - 1] != stack[top]) {
 				if (top > maxDep) maxDep = top;
 				top--;
 				continue;
@@ -24,8 +23,17 @@ public class Baekjoon_25918_1 {
 			top++;
 		}
 
-		if (top == 0) System.out.print(maxDep);
-		else System.out.print(-1);
+		if (top == 0) return maxDep;
+		return -1;
+	}
+
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+		int n = Integer.parseInt(br.readLine());
+		String str = br.readLine();
+
+		System.out.print(getDays(n, str));
 	}
 
 }
