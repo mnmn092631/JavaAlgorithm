@@ -8,8 +8,7 @@ public class Baekjoon_14713_1 {
 
 	public static String isPossible(int n, String[][] arr, String[] l) {
 		int[] idx = new int[n];
-		for (int i = 0; i < l.length; i++) {
-			String word = l[i];
+		for (String word : l) {
 			boolean flag = false;
 			for (int j = 0; j < n; j++) {
 				if (idx[j] == arr[j].length) continue;
