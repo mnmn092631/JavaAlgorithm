@@ -15,18 +15,13 @@ public class Baekjoon_11866 {
 
 		int n = Integer.parseInt(st.nextToken());
 		int k = Integer.parseInt(st.nextToken());
-
-		int[] que = new int[n];
-		for (int i = 1; i <= n; i++) {
-			que[i - 1] = i;
-		}
-
+		
+		boolean[] check = new boolean[n];
 		int idx = 0;
 		int count = 0;
 		int delCount = 0;
-
 		while (delCount < n) {
-			while(que[idx] == -1) {
+			while(check[idx]) {
 				idx = (idx + 1) % n;
 			}
 			if (count != k - 1) {
@@ -34,8 +29,8 @@ public class Baekjoon_11866 {
 				idx = (idx + 1) % n;
 				continue;
 			}
-			sb.append(que[idx]).append(", ");
-			que[idx] = -1;
+			sb.append(idx + 1).append(", ");
+			check[idx] = true;
 			idx = (idx + 1) % n;
 			delCount++;
 			count = 0;
