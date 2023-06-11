@@ -8,6 +8,33 @@ import java.util.ListIterator;
 
 public class Baekjoon_5397 {
 
+	public static void keylogger(char[] l, ListIterator<Character> iter) {
+		for (char c : l) {
+			switch (c) {
+			case '<': {
+				if (iter.hasPrevious())
+					iter.previous();
+				break;
+			}
+			case '>': {
+				if (iter.hasNext())
+					iter.next();
+				break;
+			}
+			case '-': {
+				if (iter.hasPrevious()) {
+					iter.previous();
+					iter.remove();
+				}
+				break;
+			}
+			default:
+				iter.add(c);
+				break;
+			}
+		}
+	}
+
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
@@ -18,34 +45,15 @@ public class Baekjoon_5397 {
 			char[] l = br.readLine().toCharArray();
 			LinkedList<Character> list = new LinkedList<>();
 			ListIterator<Character> iter = list.listIterator();
-			for (char c : l) {
-				switch (c) {
-				case '<': {
-					if (iter.hasPrevious()) iter.previous();
-					break;
-				}
-				case '>': {
-					if (iter.hasNext()) iter.next();
-					break;
-				}
-				case '-': {
-					if (iter.hasPrevious()) {
-						iter.previous();
-						iter.remove();
-					}
-					break;
-				}
-				default:
-					iter.add(c);
-				}
-			}
-			
-			for(char c : list) {
+
+			keylogger(l, iter);
+
+			for (char c : list) {
 				sb.append(c);
 			}
 			sb.append("\n");
 		}
-		
+
 		System.out.print(sb);
 	}
 
